@@ -1,7 +1,7 @@
 {
   "name": "vba-ui",
   "private": false,
-  "version": "1.0.5",
+  "version": "1.0.6",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.esm.js",
@@ -13,7 +13,8 @@
       "require": "./dist/index.cjs"
     },
     "./styles": "./dist/styles/index.scss",
-    "./styles/*": "./dist/styles/*.scss"
+    "./styles/*": "./dist/styles/*.scss",
+    "./vba-ui.css": "./dist/vba-ui.css"
   },
   "files": [
     "dist"
@@ -42,6 +43,7 @@
     "sass-embedded": "^1.97.2",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
-    "vite": "^7.2.4"
+    "vite": "^7.2.4",
+    "vite-plugin-css-injected-by-js": "^3.5.2"
   }
 }
