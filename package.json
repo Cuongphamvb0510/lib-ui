@@ -1,16 +1,16 @@
 {
   "name": "vba-ui",
   "private": false,
-  "version": "1.0.4",
+  "version": "1.0.5",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.esm.js",
-      "require": "./dist/index.cjs",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/index.cjs"
     },
     "./styles": "./dist/styles/index.scss",
     "./styles/*": "./dist/styles/*.scss"
@@ -20,7 +20,8 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc -p tsconfig.build.json && vite build && node scripts/copy-styles.js",
+    "build": "tsc -p tsconfig.build.json && vite build --config vite.config.build.ts && node scripts/copy-styles.js",
+    "build:lib": "vite build --config vite.config.build.ts",
     "lint": "eslint .",
     "preview": "vite preview"
   },
