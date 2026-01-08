@@ -1,0 +1,87 @@
+// rounded-8, rounded-t-8, rounded-br-20, rounded-25p, rounded-t-25p, rounded-br-75p
+
+@each $radius in (4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48) {
+
+    // --- Border Radius theo PX ---
+    .rounded-#{$radius} {
+        border-radius: #{$radius}PX;
+    }
+
+    .rounded-t-#{$radius} {
+        border-top-left-radius: #{$radius}PX;
+        border-top-right-radius: #{$radius}PX;
+    }
+
+    .rounded-b-#{$radius} {
+        border-bottom-left-radius: #{$radius}PX;
+        border-bottom-right-radius: #{$radius}PX;
+    }
+
+    .rounded-l-#{$radius} {
+        border-top-left-radius: #{$radius}PX;
+        border-bottom-left-radius: #{$radius}PX;
+    }
+
+    .rounded-r-#{$radius} {
+        border-top-right-radius: #{$radius}PX;
+        border-bottom-right-radius: #{$radius}PX;
+    }
+
+    .rounded-tl-#{$radius} {
+        border-top-left-radius: #{$radius}PX;
+    }
+
+    .rounded-tr-#{$radius} {
+        border-top-right-radius: #{$radius}PX;
+    }
+
+    .rounded-bl-#{$radius} {
+        border-bottom-left-radius: #{$radius}PX;
+    }
+
+    .rounded-br-#{$radius} {
+        border-bottom-right-radius: #{$radius}PX;
+    }
+}
+
+@each $percent in (25, 50, 75, 100) {
+    .rounded-#{$percent}p {
+        border-radius: #{$percent}#{'%'};
+    }
+
+    .rounded-t-#{$percent}p {
+        border-top-left-radius: #{$percent}#{'%'};
+        border-top-right-radius: #{$percent}#{'%'};
+    }
+
+    .rounded-b-#{$percent}p {
+        border-bottom-left-radius: #{$percent}#{'%'};
+        border-bottom-right-radius: #{$percent}#{'%'};
+    }
+
+    .rounded-l-#{$percent}p {
+        border-top-left-radius: #{$percent}#{'%'};
+        border-bottom-left-radius: #{$percent}#{'%'};
+    }
+
+    .rounded-r-#{$percent}p {
+        border-top-right-radius: #{$percent}#{'%'};
+        border-bottom-right-radius: #{$percent}#{'%'};
+    }
+
+    .rounded-tl-#{$percent}p {
+        border-top-left-radius: #{$percent}#{'%'};
+    }
+
+    .rounded-tr-#{$percent}p {
+        border-top-right-radius: #{$percent}#{'%'};
+    }
+
+    .rounded-bl-#{$percent}p {
+        border-bottom-left-radius: #{$percent}#{'%'};
+    }
+
+    .rounded-br-#{$percent}p {
+        border-bottom-right-radius: #{$percent}#{'%'};
+    }
+}

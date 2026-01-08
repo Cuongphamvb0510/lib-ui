@@ -1,0 +1,36 @@
+// Mixin cho gradient border với pseudo-elements
+@mixin gradient-border($border-radius: 16PX, $inner-border-radius: 15PX, $gradient: linear-gradient(135deg, #FC6F20, #FFE867), $background: var(--Neutral-White-500)) {
+    position: relative;
+    background: $background;
+    border-radius: $border-radius;
+    isolation: isolate;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -1PX;
+        right: -1PX;
+        bottom: -1PX;
+        left: -1PX;
+        z-index: 0;
+        border-radius: $border-radius;
+        background: $gradient;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 0;
+        border-radius: $inner-border-radius;
+        background: $background;
+    }
+
+    >* {
+        position: relative;
+        z-index: 1;
+    }
+}

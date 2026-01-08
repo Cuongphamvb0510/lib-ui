@@ -1,0 +1,6 @@
+// Mixin cho screen container với scroll
+@mixin screen-container($height-offset: 60PX, $background-color: var(--Neutral-White-500)) {
+    height: calc(100% - #{$height-offset});
+    overflow-y: auto;
+    background-color: $background-color;
+}

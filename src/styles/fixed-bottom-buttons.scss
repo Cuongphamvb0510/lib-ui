@@ -1,0 +1,28 @@
+// Mixin cho fixed bottom buttons
+@mixin fixed-bottom-buttons($border-color: var(--Neutral-Gray-100), $z-index: null, $padding: null, $bottom: null, $padding-bottom: null) {
+    position: fixed;
+    left: 0;
+    right: 0;
+    background: var(--Neutral-White-500);
+    border-top: 1PX solid $border-color;
+
+    @if $bottom {
+        bottom: $bottom;
+    }
+
+    @else {
+        bottom: calc(var(--safe-area-bottom) / 2);
+    }
+
+    @if $z-index {
+        z-index: $z-index;
+    }
+
+    @if $padding {
+        padding: $padding;
+    }
+
+    @if $padding-bottom {
+        padding-bottom: $padding-bottom;
+    }
+}

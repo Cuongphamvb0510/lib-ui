@@ -1,0 +1,164 @@
+$spaceType: (
+    "m": "margin",
+    "p": "padding",
+);
+
+$paddingDirection: (
+    "r": "right",
+    "l": "left",
+    "t": "top",
+    "b": "bottom",
+);
+
+$direction: (
+    "x",
+    "y"
+);
+
+$spacing-multiplier: 4;
+
+$spacing-values: (
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+);
+
+// Generate directional spacing classes (mt-1, mr-2, mb-3, ml-4)
+@each $typeKey, $typeValue in $spaceType {
+    @each $dirKey, $dirValue in $paddingDirection {
+        @each $value in $spacing-values {
+            .#{$typeKey}#{$dirKey}-#{$value} {
+                #{$typeValue}-#{$dirValue}: #{$value * $spacing-multiplier}PX;
+            }
+        }
+    }
+}
+
+// Generate all-side spacing classes (m-1, p-2)
+@each $typeKey, $typeValue in $spaceType {
+    @each $value in $spacing-values {
+        .#{$typeKey}-#{$value} {
+            #{$typeValue}: #{$value * $spacing-multiplier}PX;
+        }
+    }
+}
+
+// Generate horizontal/vertical spacing classes (mx-1, my-2, PX-3, py-4)
+@each $typeKey, $typeValue in $spaceType {
+    @each $dir in $direction {
+        @each $value in $spacing-values {
+            .#{$typeKey}#{$dir}-#{$value} {
+                @if $dir ==x {
+                    #{$typeValue}-left: #{$value * $spacing-multiplier}PX;
+                    #{$typeValue}-right: #{$value * $spacing-multiplier}PX;
+                }
+
+                @else {
+                    #{$typeValue}-top: #{$value * $spacing-multiplier}PX;
+                    #{$typeValue}-bottom: #{$value * $spacing-multiplier}PX;
+                }
+            }
+        }
+    }
+}
+
+// Generate two-value spacing classes (m-2-4 = margin: 8PX 16PX)
+@each $typeKey, $typeValue in $spaceType {
+    @each $yValue in $spacing-values {
+        @each $xValue in $spacing-values {
+            .#{$typeKey}-#{$yValue}-#{$xValue} {
+                #{$typeValue}: #{$yValue * $spacing-multiplier}PX #{$xValue * $spacing-multiplier}PX;
+            }
+        }
+    }
+}
+
+// Arbitrary value support using CSS custom properties
+// Usage: class="mt-[50]" will generate margin-top: 50PX
+// This requires JavaScript to dynamically add CSS rules
+// Add this to your main CSS or handle via JavaScript
+
+// CSS for arbitrary values (will be generated dynamically)
+// .mt-\[(\d+)\] { margin-top: var(--mt-arbitrary, 0PX); }
+// .mr-\[(\d+)\] { margin-right: var(--mr-arbitrary, 0PX); }
+// .mb-\[(\d+)\] { margin-bottom: var(--mb-arbitrary, 0PX); }
+// .ml-\[(\d+)\] { margin-left: var(--ml-arbitrary, 0PX); }
+// .m-\[(\d+)\] { margin: var(--m-arbitrary, 0PX); }
+// Similar patterns for padding (pt-, pr-, pb-, pl-, p-)
+
+// For now, you can add specific arbitrary values manually:
+// Example: mt-[50] = margin-top: 50PX
+.mt-\[50\] {
+    margin-top: 50PX;
+}
+
+.mr-\[50\] {
+    margin-right: 50PX;
+}
+
+.mb-\[50\] {
+    margin-bottom: 50PX;
+}
+
+.ml-\[50\] {
+    margin-left: 50PX;
+}
+
+.m-\[50\] {
+    margin: 50PX;
+}
+
+.pt-\[50\] {
+    padding-top: 50PX;
+}
+
+.pr-\[50\] {
+    padding-right: 50PX;
+}
+
+.pb-\[50\] {
+    padding-bottom: 50PX;
+}
+
+.pl-\[50\] {
+    padding-left: 50PX;
+}
+
+.p-\[50\] {
+    padding: 50PX;
+}
+
+// Add more arbitrary values as needed
+.mt-\[100\] {
+    margin-top: 100PX;
+}
+
+.mb-\[100\] {
+    margin-bottom: 100PX;
+}
+
+.pt-\[100\] {
+    padding-top: 100PX;
+}
+
+.pb-\[100\] {
+    padding-bottom: 100PX;
+}

@@ -1,0 +1,94 @@
+// flex flex-col items-center justify-between flex-wrap 
+// flex grow shrink basis-full flex-1 flex-auto
+
+.flex {
+    display: flex;
+}
+
+.inline-flex {
+    display: inline-flex;
+}
+
+// Flex-direction
+@each $dir in row, col, row-reverse, col-reverse {
+    .flex-#{$dir} {
+        flex-direction: if($dir ==col, column, if($dir ==col-reverse, column-reverse, $dir));
+    }
+}
+
+// Justify-content
+@each $name, $value in (start: flex-start,
+    end: flex-end,
+    center: center,
+    between: space-between,
+    around: space-around,
+    evenly: space-evenly) {
+    .justify-#{$name} {
+        justify-content: $value;
+    }
+}
+
+// Align-items
+@each $name, $value in (start: flex-start,
+    end: flex-end,
+    center: center,
+    stretch: stretch,
+    baseline: baseline) {
+    .items-#{$name} {
+        align-items: $value;
+    }
+}
+
+// Flex-wrap
+@each $wrap in wrap, nowrap, wrap-reverse {
+    .flex-#{$wrap} {
+        flex-wrap: $wrap;
+    }
+}
+
+// Flex grow / shrink
+.grow {
+    flex-grow: 1;
+}
+
+.grow-0 {
+    flex-grow: 0;
+}
+
+.shrink {
+    flex-shrink: 1;
+}
+
+.shrink-0 {
+    flex-shrink: 0;
+}
+
+// Flex utilities (tailwind-style)
+.flex-1 {
+    flex: 1 1 0%;
+}
+
+.flex-auto {
+    flex: 1 1 auto;
+}
+
+.flex-initial {
+    flex: 0 1 auto;
+}
+
+.flex-none {
+    flex: none;
+}
+
+// Basis utilities
+@each $name, $value in (0: 0,
+    full: 100%,
+    1_2: 50%,
+    1_3: 33.3333%,
+    2_3: 66.6666%,
+    1_4: 25%,
+    3_4: 75%) {
+    .basis-#{$name} {
+        flex-basis: $value;
+    }
+}
