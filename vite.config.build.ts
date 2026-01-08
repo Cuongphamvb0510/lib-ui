@@ -5,7 +5,9 @@ import path from "path";
 
 export default defineConfig({
   plugins: [
-    react(),
+    react({
+      jsxRuntime: "automatic",
+    }),
     // Plugin để inject CSS vào JavaScript thay vì extract ra file riêng
     // CSS sẽ tự động được inject khi import component
     cssInjectedByJsPlugin(),
@@ -28,11 +30,18 @@ export default defineConfig({
       },
     },
     rollupOptions: {
-      external: ["react", "react-dom"],
+      external: [
+        "react",
+        "react-dom",
+        "react/jsx-runtime",
+        "react/jsx-dev-runtime",
+      ],
       output: {
         globals: {
           react: "React",
           "react-dom": "ReactDOM",
+          "react/jsx-runtime": "react/jsx-runtime",
+          "react/jsx-dev-runtime": "react/jsx-dev-runtime",
         },
         preserveModules: false,
       },
