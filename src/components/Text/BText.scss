@@ -1,0 +1,137 @@
+@use "../../styles/colors.scss" as *;
+
+.text {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-line;
+    text-align: left;
+
+    // Text types
+    &-headline {
+        font-size: 18PX;
+        font-weight: 700;
+        line-height: 28PX;
+        color: var(--Neutral-Gray-500);
+    }
+
+    &-title {
+        font-size: 16PX;
+        font-weight: 700;
+        line-height: 24PX;
+        color: var(--Neutral-Gray-500);
+    }
+
+    &-body {
+        font-size: 14PX;
+        font-weight: 700;
+        line-height: 20PX;
+        color: var(--Neutral-Gray-500);
+    }
+
+
+
+    // &-headline {
+    //     font-size: 20PX;
+    //     font-weight: 600;
+    //     line-height: 30PX;
+    //     color: var(--Neutral-Gray-500);
+    // }
+
+    &-caption {
+        font-size: 12PX;
+        font-weight: 400;
+        line-height: 16PX;
+        color: var(--Neutral-Gray-500);
+    }
+
+    // Font weights
+    &-weight-200 {
+        font-weight: 200;
+    }
+
+    &-weight-400 {
+        font-weight: 400;
+    }
+
+    &-weight-600 {
+        font-weight: 600;
+    }
+
+    &-weight-700 {
+        font-weight: 700;
+    }
+
+    // Colors - Updated to use new color variables from colors.scss
+    &-color-Primary-Brand-color-500---Main {
+        color: var(--Primary-Brand-color-500---Main);
+    }
+
+    &-color-PrimaryBrandColor50 {
+        color: var(--PrimaryBrandColor50);
+    }
+
+    &-color-Neutral-Gray-500 {
+        color: var(--Neutral-Gray-500);
+    }
+
+    &-color-Neutral-Gray-400 {
+        color: var(--Neutral-Gray-400);
+    }
+
+    &-color-Neutral-Gray-300 {
+        color: var(--Neutral-Gray-300);
+    }
+
+    &-color-Neutral-Gray-100 {
+        color: var(--Neutral-Gray-100);
+    }
+
+    &-color-Neutral-Gray-50 {
+        color: var(--Neutral-Gray-50);
+    }
+
+    &-color-Neutral-White-500 {
+        color: var(--Neutral-White-500);
+    }
+
+    &-color-Sematic-Dangerous-Red-500 {
+        color: var(--Sematic-Dangerous-Red-500);
+    }
+
+    &-color-Sematic-Success-Green-500 {
+        color: var(--Sematic-Success-Green-500);
+    }
+
+    &-color-Sematic-Information-Blue-500 {
+        color: var(--Sematic-Information-Blue-500);
+    }
+
+    &-color-Sematic-Information-Blue-600 {
+        color: var(--Sematic-Information-Blue-600);
+    }
+
+    // Alignment
+    &-align-center {
+        text-align: center;
+    }
+
+    &-align-right {
+        text-align: right;
+    }
+
+    // Truncate
+    &-truncate {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    // Clickable
+    &-clickable {
+        cursor: pointer;
+
+        &:active {
+            opacity: 0.7;
+        }
+    }
+}

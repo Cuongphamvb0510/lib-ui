@@ -10,9 +10,11 @@
     "moduleResolution": "node",
     "allowImportingTsExtensions": false,
     "verbatimModuleSyntax": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "types": []
   },
-  "include": ["src/index.ts", "src/components/**/*"],
+  "include": ["src/index.ts", "src/components/**/*", "src/vite-env.d.ts"],
   "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.test.tsx"]
 }
 

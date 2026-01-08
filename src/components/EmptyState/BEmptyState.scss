@@ -1,0 +1,33 @@
+.empty-state-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24PX;
+    width: 100%;
+}
+
+.empty-state-icon {
+    margin-bottom: 24PX;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.empty-state-main-text {
+    margin-bottom: 16PX;
+    text-align: center;
+    width: 100%;
+}
+
+.empty-state-sub-text {
+    margin-bottom: 32PX;
+    width: 100%;
+    color: var(--Neutral-Gray-500);
+}
+
+.empty-state-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

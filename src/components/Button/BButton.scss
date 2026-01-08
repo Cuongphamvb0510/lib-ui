@@ -1,0 +1,81 @@
+@use "../../styles/colors.scss" as *;
+
+.b-button {
+    height: 48PX;
+    width: 100%;
+    border-radius: 16PX;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: center;
+    padding: 0 7PX;
+    gap: 8px;
+}
+
+// Button type: full (đầy màu)
+.b-button-full {
+    background: var(--Primary-Brand-color-500---Main);
+    border: none;
+
+    .b-button-text {
+        color: var(--Neutral-White-500);
+    }
+}
+
+// Button type: border (chỉ viền)
+.b-button-border {
+    background: transparent;
+    border: 1PX solid var(--Primary-Brand-color-500---Main);
+
+    .b-button-text {
+        color: var(--Primary-Brand-color-500---Main);
+    }
+}
+
+// Button type: light (nền nhạt)
+.b-button-light {
+    background: var(--Primary-Brand-color-25);
+    border: none;
+
+    .b-button-text {
+        color: var(--Primary-Brand-color-500---Main);
+    }
+}
+
+// Disabled state
+.b-button-disabled {
+    background: var(--Neutral-Gray-300) !important;
+    cursor: not-allowed;
+    pointer-events: none;
+
+    .b-button-text {
+        color: var(--Neutral-White-500);
+    }
+}
+
+// Button width styles
+.b-button-width-full {
+    width: 100%;
+}
+
+.b-button-width-fit-content {
+    width: fit-content;
+    height: 32PX;
+    border-radius: 10PX;
+}
+
+.b-button-full.b-button-width-fit-content {
+    width: fit-content;
+    height: 48PX;
+    border-radius: 16PX;
+    padding: 0 24PX;
+}
+
+.b-button-icon-left,
+.b-button-icon-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

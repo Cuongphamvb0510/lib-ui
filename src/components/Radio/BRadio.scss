@@ -1,0 +1,63 @@
+@use "../../styles/colors.scss" as *;
+
+.b-radio {
+    display: flex;
+    align-items: flex-start;
+    user-select: none;
+    cursor: pointer;
+
+    &.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    .b-radio-box {
+        width: 20PX;
+        height: 20PX;
+        border: 1PX solid var(--Neutral-Gray-400);
+        background: var(--Neutral-White-500);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+        position: relative;
+        flex-shrink: 0;
+        margin-top: 2PX;
+
+        .b-radio-dot {
+            width: 12PX;
+            height: 12PX;
+            background-color: var(--Primary-Brand-color-500---Main);
+            border-radius: 50%;
+        }
+    }
+
+    &.checked {
+        .b-radio-box {
+            border-color: var(--Primary-Brand-color-500---Main);
+        }
+    }
+
+    .b-radio-content {
+        margin-left: 12PX;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 4PX;
+    }
+
+    // Style popup: label trái, radio phải
+    &.b-radio-popup {
+        align-items: center;
+
+        .b-radio-content {
+            margin-left: 0;
+            margin-right: 12PX;
+        }
+
+        .b-radio-box {
+            margin-top: 0;
+        }
+    }
+}

@@ -95,6 +95,378 @@ function App() {
 
 **Lưu ý**: Nếu bạn sử dụng một tên icon không tồn tại, component sẽ hiển thị cảnh báo trong console và không render gì.
 
+## 📦 Components
+
+### BText Component
+
+Component text với nhiều tùy chọn về kiểu, màu sắc, và căn chỉnh.
+
+#### Cách sử dụng cơ bản
+
+```tsx
+import {
+  BText,
+  TEXT_TYPES,
+  TEXT_WEIGHTS,
+  TEXT_COLORS,
+  TEXT_ALIGN,
+} from "vba-ui";
+
+function App() {
+  return (
+    <div>
+      <BText type={TEXT_TYPES.HEADLINE}>Headline Text</BText>
+      <BText type={TEXT_TYPES.TITLE}>Title Text</BText>
+      <BText type={TEXT_TYPES.BODY}>Body Text</BText>
+      <BText type={TEXT_TYPES.CAPTION}>Caption Text</BText>
+    </div>
+  );
+}
+```
+
+#### Props
+
+- **`children`** (tùy chọn): Nội dung text
+- **`type`** (tùy chọn): Kiểu text - `TEXT_TYPES.HEADLINE`, `TEXT_TYPES.TITLE`, `TEXT_TYPES.BODY`, `TEXT_TYPES.CAPTION` (mặc định: `BODY`)
+- **`weight`** (tùy chọn): Độ đậm - `TEXT_WEIGHTS.LIGHT` (200), `TEXT_WEIGHTS.NORMAL` (400), `TEXT_WEIGHTS.SEMIBOLD` (600), `TEXT_WEIGHTS.BOLD` (700)
+- **`color`** (tùy chọn): Màu sắc - `TEXT_COLORS.PRIMARY_MAIN`, `TEXT_COLORS.GRAY_500`, `TEXT_COLORS.DANGER`, v.v.
+- **`align`** (tùy chọn): Căn chỉnh - `TEXT_ALIGN.LEFT`, `TEXT_ALIGN.CENTER`, `TEXT_ALIGN.RIGHT` (mặc định: `LEFT`)
+- **`truncate`** (tùy chọn): Cắt text dài với ellipsis (mặc định: `false`)
+- **`onClick`** (tùy chọn): Callback khi click vào text
+- **`as`** (tùy chọn): HTML element - `TEXT_ELEMENTS.DIV`, `TEXT_ELEMENTS.SPAN` (mặc định: `DIV`)
+- **`className`** (tùy chọn): CSS class tùy chỉnh
+- **`dangerouslySetInnerHTML`** (tùy chọn): Render HTML trực tiếp
+
+#### Ví dụ sử dụng
+
+```tsx
+import {
+  BText,
+  TEXT_TYPES,
+  TEXT_WEIGHTS,
+  TEXT_COLORS,
+  TEXT_ALIGN,
+} from "vba-ui";
+
+function App() {
+  return (
+    <div>
+      {/* Text với các style khác nhau */}
+      <BText type={TEXT_TYPES.HEADLINE} weight={TEXT_WEIGHTS.BOLD}>
+        Headline Bold
+      </BText>
+
+      <BText
+        type={TEXT_TYPES.TITLE}
+        color={TEXT_COLORS.PRIMARY_MAIN}
+        align={TEXT_ALIGN.CENTER}
+      >
+        Centered Title
+      </BText>
+
+      {/* Text có thể click */}
+      <BText type={TEXT_TYPES.BODY} onClick={() => console.log("Clicked!")}>
+        Clickable Text
+      </BText>
+
+      {/* Text bị cắt với ellipsis */}
+      <BText type={TEXT_TYPES.BODY} truncate={true} style={{ width: "200px" }}>
+        Very long text that will be truncated with ellipsis
+      </BText>
+
+      {/* Text dạng span */}
+      <BText as={TEXT_ELEMENTS.SPAN} type={TEXT_TYPES.CAPTION}>
+        Inline text
+      </BText>
+    </div>
+  );
+}
+```
+
+### BButton Component
+
+Component button với nhiều kiểu và tùy chọn.
+
+#### Cách sử dụng cơ bản
+
+```tsx
+import { BButton, BUTTON_TYPES, BUTTON_WIDTHS } from "vba-ui";
+
+function App() {
+  return (
+    <div>
+      <BButton type={BUTTON_TYPES.FULL} onClick={() => console.log("Clicked!")}>
+        Click Me
+      </BButton>
+    </div>
+  );
+}
+```
+
+#### Props
+
+- **`children`** (bắt buộc): Text hiển thị trên button (string)
+- **`type`** (tùy chọn): Kiểu button - `BUTTON_TYPES.FULL`, `BUTTON_TYPES.BORDER`, `BUTTON_TYPES.LIGHT` (mặc định: `FULL`)
+- **`disabled`** (tùy chọn): Vô hiệu hóa button (mặc định: `false`)
+- **`onClick`** (tùy chọn): Callback khi click (có throttle 1000ms)
+- **`styleWidth`** (tùy chọn): Độ rộng - `BUTTON_WIDTHS.FULL`, `BUTTON_WIDTHS.FIT_CONTENT` (mặc định: `FULL`)
+- **`leftIcon`** (tùy chọn): Icon bên trái (ReactNode)
+- **`rightIcon`** (tùy chọn): Icon bên phải (ReactNode)
+- **`className`** (tùy chọn): CSS class tùy chỉnh
+
+#### Ví dụ sử dụng
+
+```tsx
+import { BButton, BUTTON_TYPES, BUTTON_WIDTHS, IconComponent } from "vba-ui";
+
+function App() {
+  return (
+    <div>
+      {/* Button đầy màu */}
+      <BButton type={BUTTON_TYPES.FULL} onClick={() => alert("Full button")}>
+        Full Button
+      </BButton>
+
+      {/* Button chỉ viền */}
+      <BButton
+        type={BUTTON_TYPES.BORDER}
+        onClick={() => alert("Border button")}
+      >
+        Border Button
+      </BButton>
+
+      {/* Button nền nhạt */}
+      <BButton type={BUTTON_TYPES.LIGHT} onClick={() => alert("Light button")}>
+        Light Button
+      </BButton>
+
+      {/* Button với icon */}
+      <BButton
+        type={BUTTON_TYPES.FULL}
+        leftIcon={<IconComponent name="icTick" size={16} />}
+        rightIcon={<IconComponent name="icArrowRight" size={16} />}
+      >
+        Button with Icons
+      </BButton>
+
+      {/* Button fit content */}
+      <BButton type={BUTTON_TYPES.FULL} styleWidth={BUTTON_WIDTHS.FIT_CONTENT}>
+        Fit Content
+      </BButton>
+
+      {/* Button disabled */}
+      <BButton type={BUTTON_TYPES.FULL} disabled>
+        Disabled Button
+      </BButton>
+    </div>
+  );
+}
+```
+
+### BRadio Component
+
+Component radio button với hỗ trợ label và nhiều style.
+
+#### Cách sử dụng cơ bản
+
+```tsx
+import { BRadio, RADIO_STYLES } from "vba-ui";
+import { useState } from "react";
+
+function App() {
+  const [selected, setSelected] = useState(false);
+
+  return (
+    <BRadio checked={selected} onChange={setSelected}>
+      Radio Option
+    </BRadio>
+  );
+}
+```
+
+#### Props
+
+- **`checked`** (bắt buộc): Trạng thái được chọn (boolean)
+- **`onChange`** (tùy chọn): Callback khi thay đổi trạng thái `(checked: boolean) => void`
+- **`disabled`** (tùy chọn): Vô hiệu hóa radio (mặc định: `false`)
+- **`children`** (tùy chọn): Label text hoặc ReactNode
+- **`mainText`** (tùy chọn): Text chính (nếu không dùng children)
+- **`subText`** (tùy chọn): Text phụ (nếu không dùng children)
+- **`style`** (tùy chọn): Kiểu hiển thị - `RADIO_STYLES.DEFAULT`, `RADIO_STYLES.POPUP` (mặc định: `DEFAULT`)
+- **`className`** (tùy chọn): CSS class tùy chỉnh
+
+#### Ví dụ sử dụng
+
+```tsx
+import { BRadio, RADIO_STYLES } from "vba-ui";
+import { useState } from "react";
+
+function App() {
+  const [option1, setOption1] = useState(false);
+  const [option2, setOption2] = useState(true);
+
+  return (
+    <div>
+      {/* Radio với children */}
+      <BRadio checked={option1} onChange={setOption1}>
+        Option 1
+      </BRadio>
+
+      {/* Radio với mainText và subText */}
+      <BRadio
+        checked={option2}
+        onChange={setOption2}
+        mainText="Main Text"
+        subText="Sub text description"
+      />
+
+      {/* Radio popup style (label trái, radio phải) */}
+      <BRadio
+        checked={option1}
+        onChange={setOption1}
+        style={RADIO_STYLES.POPUP}
+        mainText="Popup Style"
+      />
+
+      {/* Radio disabled */}
+      <BRadio checked={true} disabled>
+        Disabled Radio
+      </BRadio>
+    </div>
+  );
+}
+```
+
+### BCheckbox Component
+
+Component checkbox với hỗ trợ label.
+
+#### Cách sử dụng cơ bản
+
+```tsx
+import { BCheckbox } from "vba-ui";
+import { useState } from "react";
+
+function App() {
+  const [checked, setChecked] = useState(false);
+
+  return (
+    <BCheckbox checked={checked} onChange={setChecked}>
+      Checkbox Label
+    </BCheckbox>
+  );
+}
+```
+
+#### Props
+
+- **`checked`** (bắt buộc): Trạng thái được chọn (boolean)
+- **`onChange`** (tùy chọn): Callback khi thay đổi trạng thái `(checked: boolean) => void`
+- **`disabled`** (tùy chọn): Vô hiệu hóa checkbox (mặc định: `false`)
+- **`children`** (tùy chọn): Label text hoặc ReactNode
+- **`className`** (tùy chọn): CSS class tùy chỉnh
+
+#### Ví dụ sử dụng
+
+```tsx
+import { BCheckbox } from "vba-ui";
+import { useState } from "react";
+
+function App() {
+  const [agree, setAgree] = useState(false);
+  const [newsletter, setNewsletter] = useState(true);
+
+  return (
+    <div>
+      <BCheckbox checked={agree} onChange={setAgree}>
+        I agree to the terms and conditions
+      </BCheckbox>
+
+      <BCheckbox checked={newsletter} onChange={setNewsletter}>
+        Subscribe to newsletter
+      </BCheckbox>
+
+      <BCheckbox checked={true} disabled>
+        Disabled Checkbox
+      </BCheckbox>
+    </div>
+  );
+}
+```
+
+### BEmptyState Component
+
+Component hiển thị trạng thái rỗng với icon, text và button tùy chọn.
+
+#### Cách sử dụng cơ bản
+
+```tsx
+import { BEmptyState, EMPTY_STATE_TYPES } from "vba-ui";
+
+function App() {
+  return (
+    <BEmptyState
+      type={EMPTY_STATE_TYPES.LIST_EMPTY}
+      subText="Danh sách trống"
+      mainText="Không có dữ liệu"
+      buttonText="Tải lại"
+      onButtonClick={() => console.log("Reload")}
+    />
+  );
+}
+```
+
+#### Props
+
+- **`type`** (bắt buộc): Loại empty state - `EMPTY_STATE_TYPES.LIST_EMPTY`, `EMPTY_STATE_TYPES.SEARCH_EMPTY`, `EMPTY_STATE_TYPES.NOTIFI_EMPTY`, `EMPTY_STATE_TYPES.LINK_EMPTY`
+- **`subText`** (bắt buộc): Text mô tả chính
+- **`mainText`** (tùy chọn): Text tiêu đề
+- **`buttonText`** (tùy chọn): Text trên button
+- **`onButtonClick`** (tùy chọn): Callback khi click button
+- **`className`** (tùy chọn): CSS class tùy chỉnh
+
+#### Ví dụ sử dụng
+
+```tsx
+import { BEmptyState, EMPTY_STATE_TYPES } from "vba-ui";
+
+function App() {
+  return (
+    <div>
+      {/* Empty state cho danh sách */}
+      <BEmptyState
+        type={EMPTY_STATE_TYPES.LIST_EMPTY}
+        mainText="Không có dữ liệu"
+        subText="Hiện tại chưa có mục nào trong danh sách"
+        buttonText="Tải lại"
+        onButtonClick={() => window.location.reload()}
+      />
+
+      {/* Empty state cho tìm kiếm */}
+      <BEmptyState
+        type={EMPTY_STATE_TYPES.SEARCH_EMPTY}
+        subText="Không tìm thấy kết quả phù hợp"
+      />
+
+      {/* Empty state cho thông báo */}
+      <BEmptyState
+        type={EMPTY_STATE_TYPES.NOTIFI_EMPTY}
+        mainText="Chưa có thông báo"
+        subText="Bạn sẽ nhận được thông báo tại đây"
+      />
+
+      {/* Empty state cho link */}
+      <BEmptyState
+        type={EMPTY_STATE_TYPES.LINK_EMPTY}
+        subText="Không có liên kết nào"
+        buttonText="Thêm liên kết"
+        onButtonClick={() => console.log("Add link")}
+      />
+    </div>
+  );
+}
+```
+
 ### Import Styles
 
 #### Cách 1: Import tất cả styles

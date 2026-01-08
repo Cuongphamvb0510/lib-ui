@@ -1,0 +1,39 @@
+@use "../../styles/colors.scss" as *;
+
+.b-checkbox {
+    display: flex;
+    user-select: none;
+
+    &.disabled {
+        opacity: 0.5;
+    }
+
+    .b-checkbox-box {
+        width: 20PX;
+        height: 20PX;
+        border-radius: 6PX;
+        border: 1PX solid var(--Neutral-Gray-400);
+        background: var(--Neutral-White-500);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+        position: relative;
+
+        .b-checkbox-tick {
+            width: 6PX;
+            height: 10PX;
+            border: solid var(--Neutral-White-500);
+            border-width: 0 2PX 2PX 0;
+            transform: rotate(45deg);
+            margin-top: -4PX;
+        }
+    }
+
+    &.checked {
+        .b-checkbox-box {
+            background-color: var(--Primary-Brand-color-500---Main);
+            border-color: var(--Primary-Brand-color-500---Main);
+        }
+    }
+}
