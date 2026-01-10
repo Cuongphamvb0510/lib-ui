@@ -7,7 +7,7 @@
     "outDir": "./dist",
     "noEmit": false,
     "skipLibCheck": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "allowImportingTsExtensions": false,
     "verbatimModuleSyntax": false,
     "allowSyntheticDefaultImports": true,
@@ -15,6 +15,6 @@
     "types": []
   },
   "include": ["src/index.ts", "src/components/**/*", "src/vite-env.d.ts"],
-  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.test.tsx"]
+  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.test.tsx", "**/*.stories.ts", "**/*.stories.tsx", "src/stories"]
 }
 
