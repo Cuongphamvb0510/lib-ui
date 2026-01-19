@@ -60,4 +60,12 @@
             margin-top: 0;
         }
     }
+
+    &.b-radio-no-subtext {
+        align-items: center;
+
+        .b-radio-box {
+            margin-top: 0;
+        }
+    }
 }

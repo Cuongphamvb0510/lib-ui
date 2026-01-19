@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { BButton } from "./BButton";
-import { BUTTON_TYPES, BUTTON_WIDTHS } from "../../constants";
+import { BUTTON_TYPES, BUTTON_WIDTHS, COLORS } from "../../constants";
 import { IconComponent } from "../Icon";
 
 const meta = {
@@ -90,7 +90,7 @@ export const WithLeftIcon: Story = {
     type: BUTTON_TYPES.FULL,
     styleWidth: BUTTON_WIDTHS.FULL,
     disabled: false,
-    leftIcon: <IconComponent name="icArrowRight" size={20} />,
+    leftIcon: <IconComponent name="icHomeOutline" size={20} />,
   },
 };
 
@@ -100,7 +100,7 @@ export const WithRightIcon: Story = {
     type: BUTTON_TYPES.FULL,
     styleWidth: BUTTON_WIDTHS.FULL,
     disabled: false,
-    rightIcon: <IconComponent name="icArrowRight" size={20} />,
+    rightIcon: <IconComponent name="icCheckCircleOutline" size={20} />,
   },
 };
 
@@ -110,8 +110,14 @@ export const WithBothIcons: Story = {
     type: BUTTON_TYPES.FULL,
     styleWidth: BUTTON_WIDTHS.FULL,
     disabled: false,
-    leftIcon: <IconComponent name="icBack" size={20} />,
-    rightIcon: <IconComponent name="icArrowRight" size={20} />,
+    leftIcon: (
+      <IconComponent
+        name="icHomeOutline"
+        color={COLORS.NeutralWhite500}
+        size={20}
+      />
+    ),
+    rightIcon: <IconComponent name="icCheckCircleOutline" size={20} />,
   },
 };
 

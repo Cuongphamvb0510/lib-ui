@@ -47,7 +47,7 @@ const CheckboxWithState = (args: BCheckboxProps) => {
 export const Default: Story = {
   render: CheckboxWithState,
   args: {
-    checked: false,
+    checked: true,
     disabled: false,
     children: "Checkbox label",
   },

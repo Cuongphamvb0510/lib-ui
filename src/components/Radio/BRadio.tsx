@@ -82,6 +82,7 @@ export const BRadio: React.FC<BRadioProps> = ({
   const classes = [
     "b-radio",
     isPopupStyle ? "b-radio-popup" : "",
+    !subText ? "b-radio-no-subtext" : "",
     checked ? "checked" : "",
     disabled ? "disabled" : "",
     className,

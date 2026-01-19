@@ -2,6 +2,7 @@
 import { Icon } from "./Icon";
 import type { IconProps } from "./types";
 import { iconsData } from "./icons-data";
+import { getColorValue } from "../../constants/colors";
 
 export interface IconComponentProps extends IconProps {
   name: string;
@@ -24,22 +25,30 @@ export const IconComponent: React.FC<IconComponentProps> = ({
     return null;
   }
 
+  const resolvedColor =
+    color !== "currentColor" && color.startsWith("var(")
+      ? getColorValue(color)
+      : color;
+
   let processedContent = iconData.content;
-  if (color !== "currentColor") {
-    // Thay thế tất cả fill colors (giữ nguyên "none" và "currentColor")
+  if (resolvedColor !== "currentColor") {
     processedContent = processedContent.replace(
       /fill="(?!none|currentColor)[^"]*"/g,
-      `fill="${color}"`
+      `fill="${resolvedColor}"`
     );
-    // Thay thế tất cả stroke colors (giữ nguyên "none" và "currentColor")
     processedContent = processedContent.replace(
       /stroke="(?!none|currentColor)[^"]*"/g,
-      `stroke="${color}"`
+      `stroke="${resolvedColor}"`
     );
   }
 
   return (
-    <Icon size={size} color={color} viewBox={iconData.viewBox} {...props}>
+    <Icon
+      size={size}
+      color={resolvedColor}
+      viewBox={iconData.viewBox}
+      {...props}
+    >
       <g dangerouslySetInnerHTML={{ __html: processedContent }} />
     </Icon>
   );
