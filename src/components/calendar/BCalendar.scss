@@ -1,0 +1,177 @@
+.date-picker {
+  .calendar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .calendar-container {
+    background-color: var(--Neutral-White-500);
+    padding: 16PX;
+    border-radius: 16PX;
+    max-width: 400PX;
+    width: calc(100% - 32PX);
+    box-shadow: 0 4PX 8PX rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease-in-out;
+    transform-origin: center;
+
+    @media (min-width: 600PX) {
+      width: 500PX;
+      max-width: 500PX;
+    }
+  }
+
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 12PX;
+
+    .weekday {
+      text-align: center;
+      padding: 8PX 0;
+      margin: 0 2PX;
+    }
+  }
+
+  .days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+
+    .day {
+      height: 40PX;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 16PX;
+      transition: all 0.2s;
+      margin: 2PX;
+
+      &.today {
+        background-color: var(--Primary-Brand-color-25);
+      }
+
+      &.selected {
+        background-color: var(--Primary-Brand-color-500---Main);
+      }
+    }
+  }
+
+  // Animation cho overlay fade in
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  // Animation cho container slide up và scale
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20PX) scale(0.95);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  // Animation cho closing
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    to {
+      opacity: 0;
+      transform: translateY(20PX) scale(0.95);
+    }
+  }
+
+  // Class cho animation đóng
+  .calendar-overlay.closing {
+    animation: fadeOut 0.3s ease-in-out;
+  }
+
+  .calendar-container.closing {
+    animation: slideDown 0.3s ease-in-out;
+  }
+
+  // Month Year Picker Popup
+  .month-year-picker-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16PX;
+    animation: fadeIn 0.2s ease-in-out;
+  }
+
+  .month-year-picker {
+    background-color: var(--Neutral-White-500);
+    padding: 20PX;
+    border-radius: 16PX;
+    width: 90%;
+    max-width: 350PX;
+    box-shadow: 0 4PX 12PX rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.2s ease-in-out;
+  }
+
+  .year-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .months-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    .month-item {
+      padding: 12PX;
+      margin: 6PX;
+      border-radius: 12PX;
+      text-align: center;
+      transition: all 0.2s;
+      background-color: var(--Neutral-White-500);
+
+      &.selected {
+        background-color: var(--Primary-Brand-color-500---Main);
+      }
+    }
+  }
+}

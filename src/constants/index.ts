@@ -62,6 +62,12 @@ export const EMPTY_STATE_TYPES = {
   LINK_EMPTY: "link_empty",
 } as const;
 
+// Locale Types
+export const LOCALES = {
+  EN: "en",
+  VI: "vi",
+} as const;
+
 // Import from colors for type definitions
 import { TEXT_COLORS } from "./colors";
 
@@ -80,3 +86,4 @@ export type EmptyStateType =
 export type ButtonType = (typeof BUTTON_TYPES)[keyof typeof BUTTON_TYPES];
 export type ButtonStyleWidth =
   (typeof BUTTON_WIDTHS)[keyof typeof BUTTON_WIDTHS];
+export type Locale = (typeof LOCALES)[keyof typeof LOCALES];

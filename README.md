@@ -467,6 +467,215 @@ function App() {
 }
 ```
 
+## 🎨 Constants
+
+### COLORS
+
+Thư viện cung cấp các constants màu sắc để sử dụng trong TypeScript/JavaScript code. Tất cả màu sắc đều sử dụng CSS custom properties (CSS variables) để hỗ trợ theme và dark mode.
+
+#### Import
+
+```tsx
+import {
+  COLORS,
+  TEXT_COLORS,
+  CSS_COLOR_VARS,
+  getColorValue,
+  getCssVarName,
+} from "vba-ui";
+```
+
+#### COLORS Object
+
+Object chứa tất cả các màu sắc dưới dạng CSS variable values (ví dụ: `var(--Primary-Brand-color-500---Main)`).
+
+**Các nhóm màu:**
+
+- **Primary Brand Colors**: `PrimaryBrandColor600`, `PrimaryBrandColor500`, `PrimaryBrandColor100`, `PrimaryBrandColor50`, `PrimaryBrandColor25`
+- **Neutral Gray Colors**: `NeutralGray500`, `NeutralGray400`, `NeutralGray300`, `NeutralGray200`, `NeutralGray100`, `NeutralGray50`, `NeutralGray25`, `NeutralGray5`
+- **White**: `NeutralWhite500`
+- **Semantic Dangerous Red**: `SematicDangerousRed500`, `SematicDangerousRed50`, `SematicDangerousRed25`
+- **Semantic Success Green**: `SematicSuccessGreen500`, `SematicSuccessGreen50`, `SematicSuccessGreen25`
+- **Semantic Information Blue**: `SematicInformationBlue500`, `SematicInformationBlue600`, `SematicInformationBlue50`, `SematicInformationBlue25`
+- **Semantic Warning Orange**: `SematicWarningOrange500`, `SematicWarningOrange50`, `SematicWarningOrange25`
+
+**Ví dụ sử dụng:**
+
+```tsx
+import { COLORS } from "vba-ui";
+
+function MyComponent() {
+  return (
+    <div
+      style={{
+        backgroundColor: COLORS.PrimaryBrandColor500,
+        color: COLORS.NeutralWhite500,
+        borderColor: COLORS.NeutralGray300,
+      }}
+    >
+      Styled Component
+    </div>
+  );
+}
+```
+
+#### TEXT_COLORS Object
+
+Object chứa các màu sắc được sử dụng cho text components (BText).
+
+**Các màu có sẵn:**
+
+- `PRIMARY_MAIN`: Màu chính của brand
+- `PRIMARY_50`: Màu brand nhạt
+- `GRAY_500`, `GRAY_400`, `GRAY_300`, `GRAY_100`, `GRAY_50`: Các sắc thái xám
+- `WHITE`: Màu trắng
+- `DANGER`: Màu đỏ cảnh báo
+- `SUCCESS`: Màu xanh thành công
+- `INFO_BLUE`: Màu xanh thông tin
+- `INFO_BLUE_600`: Màu xanh thông tin đậm hơn
+
+**Ví dụ sử dụng:**
+
+```tsx
+import { BText, TEXT_COLORS } from "vba-ui";
+
+function App() {
+  return (
+    <div>
+      <BText color={TEXT_COLORS.PRIMARY_MAIN}>Primary Text</BText>
+      <BText color={TEXT_COLORS.DANGER}>Error Text</BText>
+      <BText color={TEXT_COLORS.SUCCESS}>Success Text</BText>
+    </div>
+  );
+}
+```
+
+#### CSS_COLOR_VARS Object
+
+Object chứa tên các CSS custom properties (không có prefix `var()`).
+
+**Ví dụ sử dụng:**
+
+```tsx
+import { CSS_COLOR_VARS } from "vba-ui";
+
+// Sử dụng trong CSS-in-JS hoặc inline styles
+const style = {
+  [`--custom-color`]: CSS_COLOR_VARS.PrimaryBrandColor500,
+};
+```
+
+#### Helper Functions
+
+##### `getColorValue(cssVar: string): string`
+
+Lấy giá trị màu thực tế từ CSS variable (resolve giá trị từ CSS custom property).
+
+**Tham số:**
+
+- `cssVar`: CSS variable string (có thể là `var(--color-name)` hoặc `--color-name` hoặc hex color `#ffffff`)
+
+**Trả về:** Giá trị màu thực tế (ví dụ: `#ff6b6b`) hoặc giá trị gốc nếu không resolve được
+
+**Ví dụ:**
+
+```tsx
+import { COLORS, getColorValue } from "vba-ui";
+
+function MyComponent() {
+  // Lấy giá trị màu thực tế từ CSS variable
+  const actualColor = getColorValue(COLORS.PrimaryBrandColor500);
+  console.log(actualColor); // "#ff6b6b" (giá trị thực tế)
+
+  // Có thể dùng với hex color trực tiếp
+  const hexColor = getColorValue("#ff6b6b");
+  console.log(hexColor); // "#ff6b6b"
+
+  return <div style={{ color: actualColor }}>Colored Text</div>;
+}
+```
+
+**Lưu ý:**
+
+- Function này sử dụng cache để tối ưu performance
+- Chỉ hoạt động trong browser environment (không hoạt động trong SSR nếu chưa có DOM)
+
+##### `getCssVarName(colorKey: keyof typeof COLORS): string`
+
+Lấy tên CSS variable từ key của COLORS object.
+
+**Tham số:**
+
+- `colorKey`: Key của COLORS object (ví dụ: `"PrimaryBrandColor500"`)
+
+**Trả về:** Tên CSS variable (ví dụ: `"--Primary-Brand-color-500---Main"`)
+
+**Ví dụ:**
+
+```tsx
+import { getCssVarName } from "vba-ui";
+
+const varName = getCssVarName("PrimaryBrandColor500");
+console.log(varName); // "--Primary-Brand-color-500---Main"
+
+// Sử dụng trong CSS-in-JS
+const style = {
+  [varName]: "#ff6b6b",
+};
+```
+
+#### Ví dụ sử dụng tổng hợp
+
+```tsx
+import {
+  COLORS,
+  TEXT_COLORS,
+  getColorValue,
+  getCssVarName,
+  BText,
+} from "vba-ui";
+
+function ColorExamples() {
+  return (
+    <div>
+      {/* Sử dụng COLORS trong inline styles */}
+      <div
+        style={{
+          backgroundColor: COLORS.PrimaryBrandColor500,
+          color: COLORS.NeutralWhite500,
+          padding: "16px",
+          borderRadius: "8px",
+        }}
+      >
+        Primary Background
+      </div>
+
+      {/* Sử dụng TEXT_COLORS với BText */}
+      <BText color={TEXT_COLORS.PRIMARY_MAIN}>Primary Text</BText>
+      <BText color={TEXT_COLORS.DANGER}>Error Message</BText>
+
+      {/* Lấy giá trị màu thực tế */}
+      <div
+        style={{
+          color: getColorValue(COLORS.SematicDangerousRed500),
+        }}
+      >
+        Actual Color Value
+      </div>
+
+      {/* Sử dụng với CSS variables động */}
+      <div
+        style={{
+          [getCssVarName("PrimaryBrandColor500")]: "#ff6b6b",
+        }}
+      >
+        Dynamic CSS Variable
+      </div>
+    </div>
+  );
+}
+```
+
 ### Import Styles
 
 #### Cách 1: Import tất cả styles
