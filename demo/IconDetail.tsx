@@ -7,7 +7,7 @@ interface IconDetailProps {
   onClose: () => void;
 }
 
-const IconDetail: React.FC<IconDetailProps> = ({ icon, onClose }) => {
+const IconDetail: React.FC<IconDetailProps> = ({ icon }) => {
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const importCode = `import { IconComponent } from "vba-ui";`;
@@ -34,13 +34,6 @@ const IconDetail: React.FC<IconDetailProps> = ({ icon, onClose }) => {
 
   return (
     <div className="icon-detail">
-      <div className="detail-header">
-        <h3>{icon.name}</h3>
-        <button className="close-button" onClick={onClose} title="Đóng">
-          <IconComponent name="icClose" size={20} />
-        </button>
-      </div>
-
       <div className="detail-content">
         <div className="icon-preview">
           <div className="preview-wrapper">

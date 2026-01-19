@@ -7,7 +7,7 @@ export default defineConfig({
   root: "./demo",
   build: {
     outDir: "../dist",
-    emptyOutDir: false, // Không xóa các file library đã build
+    emptyOutDir: false,
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, "demo/index.html"),
