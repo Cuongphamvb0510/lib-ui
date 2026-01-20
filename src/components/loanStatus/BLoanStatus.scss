@@ -1,0 +1,47 @@
+.b-loan-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+
+    .status-text {
+        font-size: 14PX;
+        font-weight: 600;
+        line-height: 20PX;
+    }
+
+    // Blue - Khởi tạo
+    &.status-blue {
+        background-color: var(--Sematic-Information-Blue-25);
+        border: 1PX solid var(--Sematic-Information-Blue-50);
+        color: var(--Sematic-Information-Blue-500);
+    }
+
+    // Orange - Chờ xử lý
+    &.status-orange {
+        background-color: var(--Sematic-Warning-Orange-25);
+        border: 1PX solid var(--Sematic-Warning-Orange-50);
+        color: var(--Sematic-Warning-Orange-500);
+    }
+
+    // Green - Đồng ý cho vay
+    &.status-green {
+        background-color: var(--Sematic-Success-Green-25);
+        border: 1PX solid var(--Sematic-Success-Green-50);
+        color: var(--Sematic-Success-Green-500);
+    }
+
+    // Red - Từ chối
+    &.status-red {
+        background-color: var(--Sematic-Dangerous-Red-25);
+        border: 1PX solid var(--Sematic-Dangerous-Red-50);
+        color: var(--Sematic-Dangerous-Red-500);
+    }
+
+    // Gray - Đã giải ngân
+    &.status-gray {
+        background-color: var(--Neutral-Gray-25);
+        border: 1PX solid var(--Neutral-Gray-50);
+        color: var(--Neutral-Gray-400);
+    }
+}

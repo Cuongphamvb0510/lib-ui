@@ -74,6 +74,15 @@ import { TEXT_COLORS } from "./colors";
 // Re-export from colors
 export * from "./colors";
 
+// Loan Status Types
+export const LOAN_STATUS = {
+  INITIATED: "INITIATED",
+  PENDING: "PENDING",
+  APPROVED: "APPROVED",
+  REJECTED: "REJECTED",
+  DISBURSED: "DISBURSED",
+} as const;
+
 // Type definitions
 export type BTextType = (typeof TEXT_TYPES)[keyof typeof TEXT_TYPES];
 export type BTextWeight = (typeof TEXT_WEIGHTS)[keyof typeof TEXT_WEIGHTS];
@@ -87,3 +96,5 @@ export type ButtonType = (typeof BUTTON_TYPES)[keyof typeof BUTTON_TYPES];
 export type ButtonStyleWidth =
   (typeof BUTTON_WIDTHS)[keyof typeof BUTTON_WIDTHS];
 export type Locale = (typeof LOCALES)[keyof typeof LOCALES];
+export type LoanStatusType = typeof LOAN_STATUS[keyof typeof LOAN_STATUS];
+

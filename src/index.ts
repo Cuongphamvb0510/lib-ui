@@ -22,5 +22,8 @@ export * from "./components/EmptyState";
 // Export Input component
 export * from "./components/input";
 
+// Export LoanStatus component
+export * from "./components/loanStatus";
+
 // Export Colors constants
 export * from "./constants/colors";
