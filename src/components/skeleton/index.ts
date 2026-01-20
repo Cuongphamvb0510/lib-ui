@@ -1,1 +1,2 @@
-export { default as LoanItemSkeleton } from "./LoanItemSkeleton";
+export { default as BSkeleton } from "./BSkeleton";
+export type { BSkeletonProps } from "./BSkeleton";

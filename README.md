@@ -467,6 +467,571 @@ function App() {
 }
 ```
 
+### BInput Component
+
+Component input với nhiều tùy chọn như label, icon, validation, và date picker.
+
+#### Cách sử dụng cơ bản
+
+```tsx
+import { BInput } from "vba-ui";
+import { useRef } from "react";
+
+function App() {
+  const inputRef = useRef<BInputRef>(null);
+
+  return (
+    <BInput
+      label="Tên đăng nhập"
+      placeholder="Nhập tên đăng nhập"
+      onChange={(value) => console.log(value)}
+    />
+  );
+}
+```
+
+#### Props
+
+- **`label`** (tùy chọn): Label hiển thị phía trên input
+- **`value`** (tùy chọn): Giá trị input
+- **`onChange`** (tùy chọn): Callback khi giá trị thay đổi `(value: string) => void`
+- **`placeholder`** (tùy chọn): Placeholder text
+- **`leftIcon`** (tùy chọn): Tên icon bên trái (IconComponent name)
+- **`rightIcon`** (tùy chọn): Tên icon bên phải (IconComponent name)
+- **`type`** (tùy chọn): Loại input - `"text"`, `"password"`, `"number"`, `"date"`, v.v.
+- **`disabled`** (tùy chọn): Vô hiệu hóa input
+- **`error`** (tùy chọn): Thông báo lỗi
+- **`className`** (tùy chọn): CSS class tùy chỉnh
+
+#### Ví dụ sử dụng
+
+```tsx
+import { BInput, type BInputRef } from "vba-ui";
+import { useRef } from "react";
+
+function App() {
+  const inputRef = useRef<BInputRef>(null);
+
+  return (
+    <div>
+      {/* Input với icon */}
+      <BInput
+        label="Tìm kiếm"
+        leftIcon="icSearchOutline"
+        placeholder="Nhập từ khóa..."
+        onChange={(value) => console.log(value)}
+      />
+
+      {/* Input password */}
+      <BInput
+        label="Mật khẩu"
+        type="password"
+        placeholder="Nhập mật khẩu"
+      />
+
+      {/* Input với error */}
+      <BInput
+        label="Email"
+        error="Email không hợp lệ"
+        value="invalid-email"
+      />
+
+      {/* Input date */}
+      <BInput
+        label="Ngày sinh"
+        type="date"
+      />
+    </div>
+  );
+}
+```
+
+### BPopup Component
+
+Component popup bottom sheet với animation và swipe to close.
+
+#### Cách sử dụng cơ bản
+
+```tsx
+import { BPopup, type BPopupRef } from "vba-ui";
+import { useRef } from "react";
+
+function App() {
+  const popupRef = useRef<BPopupRef>(null);
+
+  const handleOpen = () => {
+    popupRef.current?.show({
+      title: "Tiêu đề Popup",
+      children: <div>Nội dung popup</div>,
+    });
+  };
+
+  return (
+    <div>
+      <button onClick={handleOpen}>Mở Popup</button>
+      <BPopup ref={popupRef} visible={false} onHide={() => {}} />
+    </div>
+  );
+}
+```
+
+#### Props
+
+- **`visible`** (bắt buộc): Hiển thị/ẩn popup (boolean)
+- **`onHide`** (bắt buộc): Callback khi đóng popup
+- **`title`** (tùy chọn): Tiêu đề popup
+- **`children`** (tùy chọn): Nội dung popup
+- **`iconClose`** (tùy chọn): Hiển thị icon đóng (mặc định: `true`)
+- **`closeOnClickOverlay`** (tùy chọn): Đóng khi click overlay (mặc định: `true`)
+- **`fixedHeight`** (tùy chọn): Chiều cao cố định
+- **`className`** (tùy chọn): CSS class tùy chỉnh
+
+#### Methods (qua ref)
+
+- **`show(params: BPopupParams)`**: Hiển thị popup với params
+- **`hide()`**: Ẩn popup
+
+#### Ví dụ sử dụng
+
+```tsx
+import { BPopup, type BPopupRef } from "vba-ui";
+import { useRef } from "react";
+
+function App() {
+  const popupRef = useRef<BPopupRef>(null);
+
+  return (
+    <div>
+      <button onClick={() => popupRef.current?.show({ title: "Popup", children: <div>Content</div> })}>
+        Mở Popup
+      </button>
+      <BPopup ref={popupRef} visible={false} onHide={() => {}} />
+    </div>
+  );
+}
+```
+
+### BPopupSlide Component
+
+Component popup slide từ các hướng (left, right, top, bottom).
+
+#### Cách sử dụng cơ bản
+
+```tsx
+import { BPopupSlide } from "vba-ui";
+import { useState } from "react";
+
+function App() {
+  const [visible, setVisible] = useState(false);
+
+  return (
+    <div>
+      <button onClick={() => setVisible(true)}>Mở Popup Slide</button>
+      <BPopupSlide
+        visible={visible}
+        onClose={() => setVisible(false)}
+        title="Tiêu đề"
+        slideFrom="right"
+      >
+        <div>Nội dung popup</div>
+      </BPopupSlide>
+    </div>
+  );
+}
+```
+
+#### Props
+
+- **`visible`** (bắt buộc): Hiển thị/ẩn popup
+- **`onClose`** (bắt buộc): Callback khi đóng
+- **`title`** (bắt buộc): Tiêu đề popup
+- **`children`** (bắt buộc): Nội dung popup
+- **`slideFrom`** (tùy chọn): Hướng slide - `"left"`, `"right"`, `"top"`, `"bottom"` (mặc định: `"right"`)
+- **`showCloseButton`** (tùy chọn): Hiển thị nút đóng (mặc định: `true`)
+- **`animationDuration`** (tùy chọn): Thời gian animation (ms, mặc định: `300`)
+- **`rightIcon`** (tùy chọn): Icon bên phải (IconComponent name)
+- **`onClickRightIcon`** (tùy chọn): Callback khi click icon phải
+- **`headerBackgroundColor`** (tùy chọn): Màu nền header - `"red"`, `"white"` (mặc định: `"white"`)
+
+### BOptionPopup Component
+
+Component popup để chọn option từ danh sách với tìm kiếm.
+
+#### Cách sử dụng cơ bản
+
+```tsx
+import { BOptionPopup, type BPopupRef } from "vba-ui";
+import { useRef } from "react";
+
+function App() {
+  const popupRef = useRef<BPopupRef>(null);
+
+  const handleOpen = () => {
+    BOptionPopup.show({
+      title: "Chọn loại vay",
+      options: [
+        { name: "Vay tiêu dùng", type: "consumer" },
+        { name: "Vay mua nhà", type: "house" },
+      ],
+      currentValue: null,
+      onSelect: (value) => console.log("Selected:", value),
+      popupRef,
+    });
+  };
+
+  return (
+    <div>
+      <button onClick={handleOpen}>Mở Option Popup</button>
+      <BPopup ref={popupRef} visible={false} onHide={() => {}} />
+    </div>
+  );
+}
+```
+
+#### Props (BOptionPopup.show)
+
+- **`title`** (bắt buộc): Tiêu đề popup
+- **`options`** (bắt buộc): Mảng các option `{ name: string, type: string }[]`
+- **`currentValue`** (bắt buộc): Giá trị hiện tại (string hoặc object)
+- **`onSelect`** (bắt buộc): Callback khi chọn `(value: LoanCategoryValue) => void`
+- **`popupRef`** (bắt buộc): Ref của BPopup component
+- **`isSearch`** (tùy chọn): Bật tìm kiếm (tự động bật nếu options >= 8)
+- **`isLoading`** (tùy chọn): Hiển thị loading state
+- **`iconClose`** (tùy chọn): Hiển thị icon đóng
+
+### BNavbar Component
+
+Component navbar với back button, title và các action buttons.
+
+#### Cách sử dụng cơ bản
+
+```tsx
+import { BNavbar } from "vba-ui";
+
+function App() {
+  return (
+    <BNavbar
+      title="Tiêu đề"
+      showBack={true}
+      onBack={() => console.log("Back clicked")}
+      fixed={true}
+    />
+  );
+}
+```
+
+#### Props
+
+- **`title`** (bắt buộc): Tiêu đề navbar (string hoặc ReactNode)
+- **`showBack`** (tùy chọn): Hiển thị nút back (mặc định: `true`)
+- **`onBack`** (tùy chọn): Callback khi click back
+- **`showRefresh`** (tùy chọn): Hiển thị nút refresh
+- **`onRefresh`** (tùy chọn): Callback khi click refresh
+- **`showHomeBack`** (tùy chọn): Hiển thị nút home back
+- **`onHomeBack`** (tùy chọn): Callback khi click home back
+- **`rightIcon`** (tùy chọn): Tên icon bên phải (IconComponent name)
+- **`onRightIconClick`** (tùy chọn): Callback khi click icon phải
+- **`fixed`** (tùy chọn): Navbar cố định ở top (mặc định: `false`)
+- **`className`** (tùy chọn): CSS class tùy chỉnh
+
+#### Ví dụ sử dụng
+
+```tsx
+import { BNavbar } from "vba-ui";
+
+function App() {
+  return (
+    <div>
+      {/* Navbar cơ bản */}
+      <BNavbar
+        title="Trang chủ"
+        onBack={() => window.history.back()}
+      />
+
+      {/* Navbar với refresh */}
+      <BNavbar
+        title="Danh sách"
+        showRefresh={true}
+        onRefresh={() => window.location.reload()}
+      />
+
+      {/* Navbar với icon bên phải */}
+      <BNavbar
+        title="Cài đặt"
+        rightIcon="icSettingOutline"
+        onRightIconClick={() => console.log("Settings")}
+      />
+
+      {/* Navbar cố định */}
+      <BNavbar
+        title="Fixed Navbar"
+        fixed={true}
+      />
+    </div>
+  );
+}
+```
+
+### BAlert Component
+
+Component alert dialog với nhiều loại (success, warning, error) và tùy chọn buttons.
+
+#### Cách sử dụng cơ bản
+
+```tsx
+import { BAlert, type SDKAlertRef } from "vba-ui";
+import { useRef } from "react";
+
+function App() {
+  const alertRef = useRef<SDKAlertRef>(null);
+
+  const handleShowAlert = () => {
+    alertRef.current?.show({
+      message: "Thông báo",
+      mainTitle: "Thành công",
+      iconType: "success",
+      typeButton: "1",
+      titleRightBtn: "Đóng",
+    });
+  };
+
+  return (
+    <div>
+      <button onClick={handleShowAlert}>Hiển thị Alert</button>
+      <BAlert ref={alertRef} />
+    </div>
+  );
+}
+```
+
+#### Props (BAlert.show)
+
+- **`message`** (bắt buộc): Nội dung thông báo (string hoặc ReactNode)
+- **`mainTitle`** (tùy chọn): Tiêu đề alert
+- **`iconType`** (tùy chọn): Loại icon - `"success"`, `"warning"`, `"error"`, `"custom"` (mặc định: `"success"`)
+- **`icon`** (tùy chọn): Tên icon tùy chỉnh (khi iconType = "custom")
+- **`typeButton`** (tùy chọn): Số nút - `"1"` (1 nút), `"2"` (2 nút) (mặc định: `"1"`)
+- **`titleLeftBtn`** (tùy chọn): Text nút trái (khi typeButton = "2")
+- **`titleRightBtn`** (tùy chọn): Text nút phải (mặc định: "Đóng")
+- **`onLeft`** (tùy chọn): Callback khi click nút trái
+- **`onRight`** (tùy chọn): Callback khi click nút phải
+- **`onHide`** (tùy chọn): Callback khi đóng alert
+- **`typeAlert`** (tùy chọn): Loại alert - `"normal"`, `"warning"`, `"copy"` (mặc định: `"normal"`)
+- **`touchOutside`** (tùy chọn): Cho phép đóng khi click ngoài (mặc định: `true`)
+
+#### Methods (qua ref)
+
+- **`show(params: ParamsAlert)`**: Hiển thị alert
+- **`hide()`**: Ẩn alert
+
+#### Ví dụ sử dụng
+
+```tsx
+import { BAlert, type SDKAlertRef } from "vba-ui";
+import { useRef } from "react";
+
+function App() {
+  const alertRef = useRef<SDKAlertRef>(null);
+
+  return (
+    <div>
+      {/* Alert success */}
+      <button onClick={() => alertRef.current?.show({
+        message: "Thao tác thành công!",
+        mainTitle: "Thành công",
+        iconType: "success",
+        typeButton: "1",
+        titleRightBtn: "Đóng",
+      })}>
+        Success Alert
+      </button>
+
+      {/* Alert với 2 nút */}
+      <button onClick={() => alertRef.current?.show({
+        message: "Bạn có muốn xóa không?",
+        mainTitle: "Xác nhận",
+        iconType: "warning",
+        typeButton: "2",
+        titleLeftBtn: "Hủy",
+        titleRightBtn: "Xóa",
+        onLeft: () => console.log("Cancelled"),
+        onRight: () => console.log("Deleted"),
+      })}>
+        Confirm Alert
+      </button>
+
+      {/* Copy alert (tự đóng sau 3s) */}
+      <button onClick={() => alertRef.current?.show({
+        message: "Đã sao chép!",
+        typeAlert: "copy",
+      })}>
+        Copy Alert
+      </button>
+
+      <BAlert ref={alertRef} />
+    </div>
+  );
+}
+```
+
+### BSkeleton Component
+
+Component skeleton loading với hình tròn và hình chữ nhật, có thể tùy chỉnh kích thước.
+
+#### Cách sử dụng cơ bản
+
+```tsx
+import { BSkeleton } from "vba-ui";
+
+function App() {
+  return (
+    <div>
+      {/* Hình chữ nhật */}
+      <BSkeleton width={200} height={20} radius={4} />
+
+      {/* Hình tròn */}
+      <BSkeleton variant="circle" width={50} height={50} />
+    </div>
+  );
+}
+```
+
+#### Props
+
+- **`width`** (tùy chọn): Chiều rộng (px, %, hoặc số) - mặc định: `100%` (rectangle), `40px` (circle)
+- **`height`** (tùy chọn): Chiều cao (px, %, hoặc số) - mặc định: `20px` (rectangle), `40px` (circle)
+- **`radius`** (tùy chọn): Border radius (px hoặc số) - mặc định: `4px` (rectangle), `50%` (circle)
+- **`variant`** (tùy chọn): Loại skeleton - `"circle"`, `"rectangle"` (mặc định: `"rectangle"`)
+- **`className`** (tùy chọn): CSS class tùy chỉnh
+
+#### Ví dụ sử dụng
+
+```tsx
+import { BSkeleton } from "vba-ui";
+
+function App() {
+  return (
+    <div>
+      {/* Skeleton cơ bản */}
+      <BSkeleton width={200} height={20} radius={4} />
+
+      {/* Skeleton hình tròn */}
+      <BSkeleton variant="circle" width={50} height={50} />
+
+      {/* Ghép nhiều skeleton */}
+      <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+        <BSkeleton variant="circle" width={40} height={40} />
+        <div style={{ flex: 1 }}>
+          <BSkeleton width="60%" height={16} radius={4} />
+          <BSkeleton width="40%" height={14} radius={4} />
+        </div>
+      </div>
+
+      {/* Card skeleton */}
+      <div style={{ border: "1px solid #e0e0e0", borderRadius: "12px", padding: "16px" }}>
+        <div style={{ display: "flex", gap: "12px", marginBottom: "12px" }}>
+          <BSkeleton variant="circle" width={40} height={40} />
+          <BSkeleton width="70%" height={16} radius={4} />
+        </div>
+        <BSkeleton width="100%" height={120} radius={8} />
+        <BSkeleton width="100%" height={14} radius={4} />
+        <BSkeleton width="80%" height={14} radius={4} />
+      </div>
+    </div>
+  );
+}
+```
+
+### BCalendar Component
+
+Component calendar để chọn ngày với hỗ trợ locale.
+
+#### Cách sử dụng cơ bản
+
+```tsx
+import { BCalendar, type BCalendarRef, LOCALES } from "vba-ui";
+import { useRef } from "react";
+
+function App() {
+  const calendarRef = useRef<BCalendarRef>(null);
+
+  const handleOpen = () => {
+    calendarRef.current?._open();
+  };
+
+  const handleGetDate = () => {
+    const date = calendarRef.current?._getDate();
+    console.log(date); // { start: "01/01/2024", end: "01/01/2024" }
+  };
+
+  return (
+    <div>
+      <button onClick={handleOpen}>Mở Calendar</button>
+      <button onClick={handleGetDate}>Lấy ngày</button>
+      <BCalendar
+        ref={calendarRef}
+        locale={LOCALES.VI}
+        onApplyDate={(start, end) => console.log(start, end)}
+      />
+    </div>
+  );
+}
+```
+
+#### Props
+
+- **`onApplyDate`** (tùy chọn): Callback khi chọn ngày `(start: Date, end: Date) => void`
+- **`textNote`** (tùy chọn): Text ghi chú
+- **`locale`** (tùy chọn): Locale - `LOCALES.VI`, `LOCALES.EN` (mặc định: `LOCALES.VI`)
+
+#### Methods (qua ref)
+
+- **`_open()`**: Mở calendar
+- **`_getDate()`**: Lấy ngày đã chọn `{ start: string, end: string }`
+
+### BLoanStatus Component
+
+Component hiển thị trạng thái khoản vay với màu sắc tương ứng.
+
+#### Cách sử dụng cơ bản
+
+```tsx
+import { BLoanStatus, LOAN_STATUS } from "vba-ui";
+
+function App() {
+  return (
+    <BLoanStatus
+      status={LOAN_STATUS.APPROVED}
+      text="Đồng ý cho vay"
+    />
+  );
+}
+```
+
+#### Props
+
+- **`status`** (bắt buộc): Trạng thái - `LOAN_STATUS.INITIATED`, `LOAN_STATUS.PENDING`, `LOAN_STATUS.APPROVED`, `LOAN_STATUS.REJECTED`, `LOAN_STATUS.DISBURSED`
+- **`text`** (tùy chọn): Text hiển thị (mặc định theo status)
+- **`className`** (tùy chọn): CSS class tùy chỉnh
+
+#### Ví dụ sử dụng
+
+```tsx
+import { BLoanStatus, LOAN_STATUS } from "vba-ui";
+
+function App() {
+  return (
+    <div>
+      <BLoanStatus status={LOAN_STATUS.INITIATED} />
+      <BLoanStatus status={LOAN_STATUS.PENDING} />
+      <BLoanStatus status={LOAN_STATUS.APPROVED} />
+      <BLoanStatus status={LOAN_STATUS.REJECTED} />
+      <BLoanStatus status={LOAN_STATUS.DISBURSED} />
+    </div>
+  );
+}
+```
+
 ## 🎨 Constants
 
 ### COLORS

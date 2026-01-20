@@ -1,11 +1,11 @@
 import React, { forwardRef, useEffect, useMemo, useRef, useState } from "react";
 import type { ForwardedRef } from "react";
 import { TEXT_COLORS, TEXT_TYPES, TEXT_WEIGHTS, COLORS } from "../../constants";
-import BCalendar, { type BCalendarRef } from "../calendar/BCalendar";
+import BCalendar, { type BCalendarRef } from "../Calendar/BCalendar";
 import { IconComponent } from "../Icon/IconComponent";
 import { iconsData } from "../Icon/icons-data";
 import { BText } from "../Text";
-import SvgIcon from "../svgIcon";
+import SvgIcon from "../SvgIcon";
 import "./BInput.scss";
 export type BInputRef = {
   // setValue: (value: string) => void;

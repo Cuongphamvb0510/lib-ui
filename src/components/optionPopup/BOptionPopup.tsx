@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "./BOptionPopup.scss";
 import { BRadio } from "../Radio";
-import { BInput } from "../input";
+import { BInput } from "../Input";
 import { BEmptyState } from "../EmptyState";
 import { EMPTY_STATE_TYPES } from "../../constants";
 import strings from "../../res/strings";
-import type { BPopupRef } from "../popup";
+import type { BPopupRef } from "../Popup";
 
 export interface LoanCategoryValue {
   name: string;

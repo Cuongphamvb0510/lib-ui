@@ -5,7 +5,7 @@ import { BButton } from "../Button";
 import { BUTTON_TYPES, BUTTON_WIDTHS } from "../../constants";
 import { BText } from "../Text";
 import { TEXT_TYPES } from "../../constants";
-import BPopup, { type BPopupRef } from "../popup/BPopup";
+import BPopup, { type BPopupRef } from "../Popup/BPopup";
 
 const meta = {
   title: "Components/OptionPopup",

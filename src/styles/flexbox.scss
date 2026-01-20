@@ -12,7 +12,17 @@
 // Flex-direction
 @each $dir in row, col, row-reverse, col-reverse {
     .flex-#{$dir} {
-        flex-direction: if($dir ==col, column, if($dir ==col-reverse, column-reverse, $dir));
+        @if $dir ==col {
+            flex-direction: column;
+        }
+
+        @else if $dir ==col-reverse {
+            flex-direction: column-reverse;
+        }
+
+        @else {
+            flex-direction: $dir;
+        }
     }
 }
 
