@@ -1,0 +1,253 @@
+// Định nghĩa animation fade-in cho text error
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8PX);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.custom-input-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+
+  .focus-input {
+    border-color: var(--Primary-Brand-color-100);
+    box-shadow: 0px 0px 0px 4px #FFF6F9;
+  }
+
+  .icon-tooltip {
+    transform: rotate(180deg);
+  }
+
+  // Tooltip styles
+  .tooltip-container {
+    position: absolute;
+    top: 45PX;
+    left: 0;
+    z-index: 1000;
+    animation: fadeIn 0.5s ease-out;
+
+    .tooltip-content {
+      background: var(--Neutral-Gray-500);
+      border-radius: 12PX;
+      padding: 16PX;
+      box-shadow: 0 6px 6px -2px rgba(0, 0, 0, 0.05), 0 4px 8px -2px rgba(0, 0, 0, 0.02);
+      width: 100%;
+      max-height: 184PX;
+      overflow-y: auto;
+    }
+  }
+}
+
+.custom-input-content {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16PX;
+  border-radius: 16PX;
+  border: 1PX solid var(--Neutral-Gray-100, #DADADA);
+  background: var(--Neutral-White-500, #FFFFFF);
+  height: 56PX;
+  width: 100%;
+
+  .ring-input {
+    position: absolute;
+    top: -5PX;
+    left: -5PX;
+    width: calc(100% + 2PX);
+    height: calc(100% + 2PX);
+    z-index: 0;
+    pointer-events: none;
+    background-color: transparent;
+    border-radius: 28PX;
+    border: 4PX solid rgba(var(--primary-color-rgb), 0.05);
+  }
+
+  .value-text {
+    overflow: hidden;
+    color: var(--Neutral-Gray-500, #333333);
+    font-size: 16PX;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24PX;
+
+    /* 150% */
+  }
+
+  .left-text {
+    color: var(--Neutral-Gray-400);
+
+    font-size: 16PX;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20PX;
+    /* 142.857% */
+
+    &.clickable {
+      cursor: pointer;
+      user-select: none;
+    }
+  }
+
+  .left-icon {
+    width: 20PX;
+    height: 20PX;
+    position: absolute;
+    top: 50%;
+    left: 16PX;
+    transform: translateY(-50%);
+    z-index: 4;
+    cursor: pointer;
+  }
+
+  .right-text {
+    color: var(--Neutral-Gray-500, #333333);
+    text-align: right;
+    font-size: 16PX;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20PX;
+    /* 142.857% */
+
+    &.clickable {
+      cursor: pointer;
+      user-select: none;
+    }
+  }
+
+  .right-icon {
+    width: 20PX;
+    height: 20PX;
+    position: absolute;
+    top: 50%;
+    right: 16PX;
+    transform: translateY(-50%);
+    z-index: 4;
+    cursor: pointer;
+  }
+
+  .clear-icon {
+    width: 20PX;
+    height: 20PX;
+    position: absolute;
+    top: 50%;
+    right: 16PX;
+    transform: translateY(-50%);
+    z-index: 5;
+    cursor: pointer;
+    color: var(--Neutral-Gray-400, #666666);
+
+    &:hover {
+      color: var(--Neutral-Gray-500, #333333);
+    }
+  }
+
+  &.has-right-icon .clear-icon {
+    right: 42PX;
+  }
+
+  // Khi có right text, clear icon nằm trước right text
+  &.has-right-text .clear-icon {
+    position: relative;
+    margin-right: 8PX;
+    right: auto;
+  }
+
+  &.has-right-text .input-field {
+    padding-right: 8PX;
+  }
+
+  .input-field {
+    flex: 1;
+    border: none;
+    font-size: 16PX;
+    line-height: 20PX;
+    font-weight: 400;
+    height: 24PX;
+    color: var(--Neutral-Gray-500, #333333);
+    caret-color: var(--Neutral-Gray-500, #333333);
+    -webkit-text-fill-color: var(--Neutral-Gray-500, #333333);
+    opacity: 1;
+    background-color: transparent;
+    padding-right: 20PX;
+    text-overflow: ellipsis;
+    outline: none;
+
+    &.readonly {
+      cursor: pointer;
+      user-select: none;
+    }
+  }
+
+  &.has-left-icon .input-field {
+    padding-left: 36PX;
+  }
+
+  &.has-left-text .input-field {
+    padding-left: 8PX;
+  }
+
+  &.has-right-icon .input-field {
+    padding-right: 48PX;
+  }
+
+  .input-field::placeholder {
+    color: var(--Neutral-Gray-300, #9C9C9C);
+    background-color: transparent;
+    opacity: 0.7;
+  }
+}
+
+.custom-input-content.focus-input {
+  border-color: var(--Primary-Brand-color-100);
+  box-shadow: 0px 0px 0px 4px #FFF6F9;
+}
+
+.custom-input-content:focus-within:not(.disabled) {
+  border-color: var(--Primary-Brand-color-100);
+  box-shadow: 0px 0px 0px 4px #FFF6F9;
+}
+
+.custom-input-content.error {
+  border: 1PX solid;
+  border-color: var(--Sematic-Dangerous-Red-500);
+}
+
+.error-view {
+  &.error-fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+}
+
+.custom-input-content.disabled {
+  border-color: var(--Neutral-Gray-100, #DADADA);
+  background: var(--Neutral-Gray-50, #F5F5F5);
+
+  .input-field {
+    color: var(--Neutral-Gray-500);
+    cursor: not-allowed;
+  }
+
+  .value-text {
+    color: var(--Neutral-Gray-500, );
+  }
+
+  .left-icon,
+  .right-icon,
+  .clear-icon,
+  .left-text.clickable,
+  .right-text.clickable {
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}

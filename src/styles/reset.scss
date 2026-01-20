@@ -1,0 +1,6 @@
+// Reset styles - box-sizing cho tất cả elements
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}

@@ -19,5 +19,8 @@ export * from "./components/Checkbox";
 // Export EmptyState component
 export * from "./components/EmptyState";
 
+// Export Input component
+export * from "./components/input";
+
 // Export Colors constants
 export * from "./constants/colors";

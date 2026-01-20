@@ -184,8 +184,8 @@ const BCalendar = (props: BCalendarProps, ref: ForwardedRef<BCalendarRef>) => {
             {/* Calendar Header */}
             <div className="calendar-header">
               <IconComponent
-                name="icBrightnessOutline"
-                size={40}
+                name="arrowLeft01"
+                size={24}
                 onClick={() => _navigateMonth("prev")}
               />
               <BText
@@ -197,8 +197,8 @@ const BCalendar = (props: BCalendarProps, ref: ForwardedRef<BCalendarRef>) => {
                 {_formatMonthYear(currentMonth)}
               </BText>
               <IconComponent
-                name="icBrightnessOutline"
-                size={40}
+                name="arrowRight01"
+                size={24}
                 onClick={() => _navigateMonth("next")}
               />
             </div>
@@ -385,8 +385,8 @@ const BCalendar = (props: BCalendarProps, ref: ForwardedRef<BCalendarRef>) => {
                   {/* Year Navigation */}
                   <div className="year-navigation">
                     <IconComponent
-                      name="icChevronLeft"
-                      size={40}
+                      name="arrowLeft01"
+                      size={24}
                       onClick={() => _handleYearChange("prev")}
                     />
                     <BText
@@ -396,8 +396,8 @@ const BCalendar = (props: BCalendarProps, ref: ForwardedRef<BCalendarRef>) => {
                       {pickerYear}
                     </BText>
                     <IconComponent
-                      name="icChevronRight"
-                      size={40}
+                      name="arrowRight01"
+                      size={24}
                       onClick={() => _handleYearChange("next")}
                     />
                   </div>
