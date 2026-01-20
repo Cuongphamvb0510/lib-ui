@@ -1,0 +1,229 @@
+// Overlay backdrop
+.popup-slide-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    // background-color: rgba(0, 0, 0, 0.4);
+    z-index: 9998;
+    animation: fadeIn 0.3s ease-in-out;
+
+    &.closing {
+        animation: fadeOut 0.3s ease-in-out;
+    }
+}
+
+.popup-slide-container {
+    height: 100%;
+    width: 100vw;
+    position: fixed;
+    z-index: 9999;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    // Slide from Right (mặc định - drawer từ phải)
+    &.slide-from-right {
+        top: 0;
+        right: 0;
+        animation: slideInFromRight 0.3s ease-out;
+
+        &.closing {
+            animation: slideOutToRight 0.3s ease-in;
+        }
+    }
+
+    // Slide from Left (drawer từ trái)
+    &.slide-from-left {
+        top: 0;
+        left: 0;
+        animation: slideInFromLeft 0.3s ease-out;
+
+        &.closing {
+            animation: slideOutToLeft 0.3s ease-in;
+        }
+    }
+
+    // Slide from Top (drawer từ trên)
+    &.slide-from-top {
+        top: 0;
+        left: 0;
+        border-radius: 0 0 24PX 24PX;
+        animation: slideInFromTop 0.3s ease-out;
+
+        &.closing {
+            animation: slideOutToTop 0.3s ease-in;
+        }
+    }
+
+    // Slide from Bottom (drawer từ dưới)
+    &.slide-from-bottom {
+        bottom: 0;
+        left: 0;
+        border-radius: 24PX 24PX 0 0;
+        animation: slideInFromBottom 0.3s ease-out;
+
+        &.closing {
+            animation: slideOutToBottom 0.3s ease-in;
+        }
+    }
+}
+
+.popup-slide-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.popup-slide-header {
+    padding: 10PX;
+    margin-top: calc(var(--safe-area-top));
+    position: relative;
+    height: 48PX;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-slide-close-icon {
+    width: 24PX;
+    height: 24PX;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 16PX;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    transition: opacity 0.2s ease;
+}
+
+.popup-slide-right-icon {
+    position: absolute;
+    right: 16PX;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    transition: opacity 0.2s ease;
+    cursor: pointer;
+}
+
+.popup-slide-title {
+    width: 75%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.popup-slide-body {
+    overflow-y: auto;
+    height: calc(100% - 48PX);
+    padding-bottom: 80PX;
+    background-color: var(--Neutral-White-500);
+}
+
+// Animation overlay fade in/out
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+// Drawer animations - Slide In
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromTop {
+    from {
+        transform: translateY(-100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInFromBottom {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+// Drawer animations - Slide Out
+@keyframes slideOutToRight {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes slideOutToLeft {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes slideOutToTop {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes slideOutToBottom {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(100%);
+    }
+}

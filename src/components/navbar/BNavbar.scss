@@ -1,0 +1,74 @@
+@import "../../styles/colors.scss";
+
+.b-navbar {
+    background-color: var(--Primary-Brand-color-500---Main);
+    display: flex;
+    align-items: center;
+    padding: 0PX 16PX;
+    justify-content: space-between;
+    height: 60PX;
+    position: relative;
+    z-index: 1;
+
+    &.fixed {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 999;
+    }
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+}
+
+.nav-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    max-width: calc(100% - 100px);
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.icon-button {
+    width: 24PX;
+    height: 24PX;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-button-back {
+    width: 36PX;
+    height: 36PX;
+    background-color: var(--background-color);
+    border: 0.5PX solid var(--neutral-white);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .icon {
+        width: 20PX;
+        height: 20PX;
+    }
+}
+
+.icon {
+    width: 24PX;
+    height: 24PX;
+
+    &.icon-dark {
+        filter: brightness(0) invert(1);
+    }
+}

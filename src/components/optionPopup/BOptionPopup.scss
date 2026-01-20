@@ -1,0 +1,53 @@
+// BOptionPopup styles
+// Shimmer animation for skeleton loading
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+.shimmer {
+    animation: shimmer 2s infinite linear;
+    background: linear-gradient(to right,
+            var(--background-shimmer, var(--Neutral-Gray-100)) 0%,
+            rgba(255, 255, 255, 0.5) 50%,
+            var(--background-shimmer, var(--Neutral-Gray-100)) 100%);
+    background-size: 1000px 100%;
+}
+
+.option-popup-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.option-popup-search {
+    flex-shrink: 0;
+    padding: 16PX;
+    padding-bottom: 0;
+    background-color: var(--Neutral-White-500);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.option-popup-options {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0 16PX 8PX;
+    -webkit-overflow-scrolling: touch;
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.option-skeleton-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4PX;
+    --background-shimmer: var(--Neutral-Gray-100);
+}

@@ -20,6 +20,9 @@ interface CalendarStrings {
   weekday_fri: string;
   weekday_sat: string;
   weekday_sun: string;
+  close: string;
+  search: string;
+  no_data: string;
 }
 
 const stringsData: Record<Locale, CalendarStrings> = {
@@ -43,6 +46,9 @@ const stringsData: Record<Locale, CalendarStrings> = {
     weekday_fri: "T6",
     weekday_sat: "T7",
     weekday_sun: "CN",
+    close: "Đóng",
+    search: "Tìm kiếm",
+    no_data: "Không có dữ liệu",
   },
   [LOCALES.EN]: {
     month_1: "January",
@@ -64,6 +70,9 @@ const stringsData: Record<Locale, CalendarStrings> = {
     weekday_fri: "Fri",
     weekday_sat: "Sat",
     weekday_sun: "Sun",
+    close: "Close",
+    search: "Search",
+    no_data: "No data",
   },
 };
 

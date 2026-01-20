@@ -25,5 +25,17 @@ export * from "./components/input";
 // Export LoanStatus component
 export * from "./components/loanStatus";
 
+// Export Popup component
+export * from "./components/popup";
+
+// Export PopupSlide component
+export * from "./components/popupSlide";
+
+// Export OptionPopup component
+export * from "./components/optionPopup";
+
+// Export Navbar component
+export * from "./components/navbar";
+
 // Export Colors constants
 export * from "./constants/colors";

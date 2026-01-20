@@ -1,0 +1,30 @@
+.vertical-stepper-skeleton {
+    .vertical-stepper-item-skeleton {
+        .skeleton-circle {
+            position: relative;
+            overflow: hidden;
+            width: 16PX;
+            height: 16PX;
+            border-radius: 50%;
+            --background-shimmer: var(--Neutral-Gray-100);
+        }
+
+        .skeleton-step-title {
+            position: relative;
+            overflow: hidden;
+            width: 60%;
+            height: 18PX;
+            border-radius: 4PX;
+            --background-shimmer: var(--Neutral-Gray-100);
+        }
+
+        .skeleton-step-description {
+            position: relative;
+            overflow: hidden;
+            width: 80%;
+            height: 14PX;
+            border-radius: 4PX;
+            --background-shimmer: var(--Neutral-Gray-100);
+        }
+    }
+}

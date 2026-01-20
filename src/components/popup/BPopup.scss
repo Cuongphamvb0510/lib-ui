@@ -1,0 +1,192 @@
+.base-popup-container {
+    height: auto;
+    max-height: 80vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border-radius: 24PX 24PX 0 0;
+    width: 100vw;
+
+
+    background-image: var(--Neutral-White-500);
+
+    // Fix cho iOS rendering
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+
+    .handle-bar {
+        width: 40PX;
+        height: 4PX;
+        background-color: var(--Neutral-Gray-100);
+        border-radius: 2PX;
+        margin: 0 auto;
+        margin-top: 4PX;
+        flex-shrink: 0;
+        // margin-bottom: 12PX;
+    }
+
+    .title-base-popup {
+        height: 24PX;
+    }
+
+    .view-header-base-popup {
+        width: 100vw;
+        padding-top: 8PX;
+        position: relative;
+        flex-shrink: 0;
+
+        .icon-close-base-popup {
+            position: absolute;
+            right: 16PX;
+            top: 10PX;
+            width: 24PX;
+            height: 24PX;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .text-close-base-popup {
+            position: absolute;
+            right: 16PX;
+            top: 10PX;
+        }
+
+        .cursor-pointer {
+            cursor: pointer;
+        }
+
+        .row-header-base-popup {
+            height: 48PX;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            position: relative;
+
+            .title-base-popup {
+                color: var(--text-color);
+                font-size: 18PX;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 24PX;
+                /* 133.333% */
+                margin-left: 16PX;
+            }
+
+        }
+
+        .icon-right-header-base-popup {
+            width: 24PX;
+            height: 24PX;
+            position: absolute;
+            right: 16PX;
+            top: 25PX
+        }
+
+        .icon-left-header-base-popup {
+            width: 24PX;
+            height: 24PX;
+            position: absolute;
+            left: 20PX;
+            top: 17PX
+        }
+
+    }
+
+    // Wrapper cho nội dung có thể scroll
+    .popup-content-wrapper {
+        overflow-y: auto;
+        overflow-x: hidden;
+        flex: 0 1 auto; // Thay vì flex: 1 để fit-content
+        max-height: calc(80vh - 100px); // Reserve space cho header
+        -webkit-overflow-scrolling: touch; // iOS smooth scrolling
+
+        // Fix cho iOS - force render
+        will-change: transform;
+        transform: translateZ(0);
+    }
+}
+
+// Khi popup có search input: fix cứng chiều cao (default 85vh)
+.base-popup-container.fixed-height {
+    height: 80vh;
+    max-height: 80vh;
+
+    .popup-content-wrapper {
+        flex: 1 1 auto;
+        max-height: none;
+    }
+}
+
+// Overlay + sheet (không dùng BBottomSheet)
+.bpopup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 9998;
+    animation: bpopupFadeIn var(--bpopup-duration, 300ms) ease-in-out;
+}
+
+.bpopup-overlay.closing {
+    animation: bpopupFadeOut var(--bpopup-duration, 300ms) ease-in-out;
+}
+
+.bpopup-sheet {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    padding-bottom: env(safe-area-inset-bottom);
+    will-change: transform;
+    background-color: var(--Neutral-White-500);
+    animation: bpopupSlideInFromBottom var(--bpopup-duration, 300ms) ease-out;
+    border-top-right-radius: 16PX;
+    border-top-left-radius: 16PX;
+}
+
+.bpopup-sheet.closing {
+    animation: bpopupSlideOutToBottom var(--bpopup-duration, 300ms) ease-in;
+}
+
+@keyframes bpopupFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes bpopupFadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes bpopupSlideInFromBottom {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes bpopupSlideOutToBottom {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(100%);
+    }
+}

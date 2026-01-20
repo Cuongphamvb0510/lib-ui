@@ -1,0 +1,33 @@
+@import "../shimmer/BShimmer.scss";
+@import "../../styles/gradient-border";
+
+.loan-item-skeleton {
+    @include gradient-border();
+
+    .skeleton-title {
+        position: relative;
+        overflow: hidden;
+        width: 60%;
+        height: 20PX;
+        border-radius: 4PX;
+        --background-shimmer: var(--Neutral-Gray-100);
+    }
+
+    .skeleton-label {
+        position: relative;
+        overflow: hidden;
+        width: 40%;
+        height: 16PX;
+        border-radius: 4PX;
+        --background-shimmer: var(--Neutral-Gray-100);
+    }
+
+    .skeleton-value {
+        position: relative;
+        overflow: hidden;
+        width: 50%;
+        height: 18PX;
+        border-radius: 4PX;
+        --background-shimmer: var(--Neutral-Gray-100);
+    }
+}
